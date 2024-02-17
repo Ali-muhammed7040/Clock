@@ -1,0 +1,191 @@
+body {
+    background: #eee;
+    padding: 25px 0;
+  }
+  /* 
+  **All divs are centerd with margin.
+  **When using position: absolute
+  **putting left and right to 0 
+  **gives the margin the effect
+  */
+  div {
+    margin: 0 auto;
+  }
+  /* Clock head */
+  .head {
+    width: 150px;
+    height: 150px;
+    background: #830;
+    border-radius: 50%;
+    margin-bottom: -30px;
+  }
+  /* Clock body  with bottom */
+  .body {
+    width: 100px;
+    height: 250px;
+    padding-top: 30px;
+    background: #830;
+    position: relative;
+    z-index: -1;
+  }
+  .body:before, .body:after {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: 0;
+    left: -40px;
+    border: 25px solid;
+    border-color: transparent #830 #830 transparent;
+  }
+  .body:after {
+    left: auto;
+    right: -40px;
+    border-color: transparent transparent #830 #830;
+  }
+  /* Clock face with ticks*/
+  .clock {
+    width: 100%;
+    height: 100%;
+    background: #bbb;
+    border-radius: 50%;
+    transform: scale(.8);
+    position: relative;
+    box-shadow: inset 0 0 5px #111;
+  }
+  .clock div {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+  .clock .dot {
+    background: #222;
+    border-radius: 50%;
+    top: 43%;
+    right: 43%;
+    bottom: 43%;
+    left: 43%;
+  }
+  .clock .marks {
+    width: 70%;
+    top: 49%;
+    bottom: 49%;
+    border-right: 13px solid #222;
+    border-left: 13px solid #222;
+  }
+  .clock .marks:nth-of-type(3n-1) {
+    top: 48%;
+    bottom: 48%;
+  }
+  .clock .marks:nth-of-type(2) {
+    transform: rotate(90deg);
+  }
+  .clock .marks:nth-of-type(3) {
+    transform: rotate(30deg);
+  }
+  .clock .marks:nth-of-type(4) {
+    transform: rotate(60deg);
+  }
+  .clock .marks:nth-of-type(6) {
+    transform: rotate(120deg);
+  }
+  .clock .marks:nth-of-type(7) {
+    transform: rotate(150deg);
+  }
+  @keyframes h {
+    from {transform: rotate(300deg)}
+    to {transform: rotate(660deg)}
+  }
+  @keyframes m {
+    from {transform: rotate(60deg)}
+    to {transform: rotate(420deg)}
+  }
+  @keyframes s {
+    from {transform: rotate(130deg)}
+    to {transform: rotate(490deg)}
+  }
+  .clock .hours {
+    top: 25%;
+    left: 47.5%;
+    bottom: 25%;
+    right: 47.5%;
+    border-top: 35px solid #222;
+    border-bottom: 35px solid transparent;
+    transform: rotate(300deg);
+    animation: h 43200s linear infinite;
+  }
+  .clock .min {
+    top: 20%;
+    left: 48.5%;
+    bottom: 20%;
+    right: 48.5%;
+    border-top: 44px solid #222;
+    border-bottom: 44px solid transparent;
+    transform: rotate(60deg);
+    animation: m 3600s steps(60) infinite;
+  }
+  .clock .sec {
+    top: 20%;
+    left: 49.5%;
+    bottom: 20%;
+    right: 49.5%;
+    border-top: 44px solid #222;
+    border-bottom: 44px solid transparent;
+    transform: rotate(130deg);
+    animation: s 60s steps(60) infinite;
+  }
+  .hours , .min, .sec {
+    transition: transform .2s linear; /* For JS under consideration*/
+  }
+  /* Clock stomach :) */
+  .stomach {
+    width: 70%;
+    height: 210px;
+    background: #222;
+    border-radius: 45px 45px 0 0;
+    box-shadow: inset 0 0 5px #111;
+  }
+  /* Clock pendulum */
+  @keyframes pendu {
+    from {transform: translateY(-5px) rotate(9deg);}
+    to {transform: translateY(-5px) rotate(-9deg);}
+  }
+  .pendulum {
+    width: 8px;
+    height: 70%;
+    position: relative;
+    background: #ec0;
+    transform-origin: 50% 0;
+    animation: pendu 1s linear infinite alternate;
+  }
+  .pendulum:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ec0;
+    position: absolute;
+    left: -6px;
+    bottom: -10px;
+  }
+  /* JS and CSS buttons */
+  .buttons {
+    text-align: center;
+    padding: .2em;
+  }
+  .buttons input {
+    position: absolute;
+    left: -200em;
+  }
+  .buttons label {
+    display: inline-block;
+    font-family: Helvetica, sans-serif;
+    padding: .8em;
+    background: #222;
+    color: #eee;
+    border-radius: .5em;
+  }
+  .buttons input:checked + label {
+    padding: .5em;
+    border: .3em solid #830;
+  }
